@@ -3,7 +3,7 @@ const { secret } = require('../config/auth');
 
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
-    const token = req.header('Authorization');
+    const token = req.header('token');
 
     if (!token) {
         return res.status(401).json({ error: 'Access denied. No token provided.' });
@@ -14,6 +14,7 @@ const verifyToken = (req, res, next) => {
         req.user = decoded;
         next();
     } catch (error) {
+        console.error(error);
         res.status(400).json({ error: 'Invalid token.' });
     }
 };
