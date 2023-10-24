@@ -5,8 +5,8 @@ const transporter = nodemailer.createTransport({
     host: 'smtp.hostinger.com',
     port: 465,
     auth: {
-        user: 'info@indplatform.in',
-        pass: 'Javed@617161'
+        user: process.env.AUTHEMAIL,
+        pass: process.env.AUTHPASSWORD
     }
 });
 
@@ -33,7 +33,7 @@ const sendEmail = (to, subject, otp) => {
     `;
 
     const mailOptions = {
-        from: 'info@indplatform.in',
+        from: process.env.AUTHEMAIL,
         to,
         subject,
         html: htmlMessage,
