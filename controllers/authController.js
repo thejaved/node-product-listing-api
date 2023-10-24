@@ -29,7 +29,7 @@ const register = async (req, res) => {
 
         // Generate and send OTP via email
         const otp = Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit OTP
-        const otpSent = await sendEmail(email, 'Your OTP for registration', `Your OTP: ${otp}`);
+        const otpSent = await sendEmail(email, 'Your OTP for registration', otp);
 
         if (otpSent) {
             user.otp = otp;
